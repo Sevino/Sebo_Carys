@@ -1,0 +1,17 @@
+﻿@model Front_Office.ViewModels.HomeViewModel
+
+@{
+    ViewBag.Title = "CARYS - Connexion";
+}
+
+<div class="jumbotron">
+    <h1>Connexion</h1>
+    @if (Model.Client != null)
+    {
+        <p>Bienvenue @Model.Client.PrenomClient !</p>
+    }
+    else
+    {
+        <p>Ce client n'existe pas.</p>
+    }
+</div>

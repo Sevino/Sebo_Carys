@@ -19,5 +19,6 @@ namespace Front_Office.Models
         List<Article> ObtenirArticles();
         List<Article> ObtenirArticlesParCategorie(Categorie categorie);
         Article ObtenirArticle(int id);
+        Client ConnecterClient(string email, string motDePasse);
     }
 }

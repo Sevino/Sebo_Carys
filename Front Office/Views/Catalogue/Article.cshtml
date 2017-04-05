@@ -1,9 +1,14 @@
 ﻿@model Front_Office.ViewModels.HomeViewModel
 
 @{
-    ViewBag.Title = Model.ArticleChoisi.LibelleArticle;
+    ViewBag.Title = "CARYS - Article : " + Model.ArticleChoisi.LibelleArticle;
 }
 
-<div class="row">
-    <h2>@ViewBag.Title</h2>
+<div class="jumbotron">
+    <h1>@Model.ArticleChoisi.LibelleArticle</h1>
+    <img src="~/Content/Images/kaaris.png" alt="@Model.ArticleChoisi.LibelleArticle" class="img-responsive pull-right" />
+    <ul>
+        <li>Prix : @String.Format("{0:0.00}", Model.ArticleChoisi.Prix) €</li>
+        <li>Genre : @Model.ArticleChoisi.IdGenre</li>
+    </ul>
 </div>

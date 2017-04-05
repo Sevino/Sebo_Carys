@@ -8,30 +8,29 @@ using System.Web.Mvc;
 
 namespace Front_Office.Controllers
 {
-    public class CatalogueController : Controller
+    public class ClientController : Controller
     {
-        public ActionResult Index(int? id)
+        public ActionResult Index()
         {
             using (var context = new Front())
             {
                 HomeViewModel model = new HomeViewModel
                 {
-                    Categories = context.ObtenirCategories(),
-                    CategorieChoisie = id.HasValue ? context.ObtenirCategorie(id.Value) : null,
-                    Articles = id.HasValue ? context.ObtenirArticlesParCategorie(context.ObtenirCategorie(id.Value)) : context.ObtenirArticles()
+                    Categories = context.ObtenirCategories()
                 };
                 return View(model);
             }
         }
 
-        public ActionResult Article(int id)
+        [HttpPost]
+        public ActionResult Connexion(Client client)
         {
             using (var context = new Front())
             {
                 HomeViewModel model = new HomeViewModel
                 {
                     Categories = context.ObtenirCategories(),
-                    ArticleChoisi = context.ObtenirArticle(id)
+                    Client = context.ConnecterClient(client.EmailClient, client.MotDePasseClient)
                 };
                 return View(model);
             }

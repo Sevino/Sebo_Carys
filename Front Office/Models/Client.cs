@@ -41,10 +41,12 @@ namespace Front_Office.Models
         [Required]
         [StringLength(250)]
         [Index(IsUnique = true)]
+        [Display(Name = "Email")]
         public string EmailClient { get; set; }
 
         [Required]
         [StringLength(250)]
+        [Display(Name = "Mot de passe")]
         public string MotDePasseClient { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

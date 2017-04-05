@@ -82,6 +82,11 @@ namespace Front_Office.Models
             return bdd.Articles.Where(article => article.Reference == id).FirstOrDefault();
         }
 
+        public Client ConnecterClient(string email, string motDePasse)
+        {
+            return bdd.Clients.Where(client => client.EmailClient == email && client.MotDePasseClient == motDePasse).FirstOrDefault();
+        }
+
         public void Dispose()
         {
             bdd.Dispose();

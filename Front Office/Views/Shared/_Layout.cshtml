@@ -33,6 +33,13 @@
     </div>
     <div class="container body-content">
         @RenderBody()
+        <div class="row">
+            <div class="col-md-4">
+                <h2>Déjà client</h2>
+                <p>Cliquez ici pour accéder à votre compte.</p>
+                <p>@Html.ActionLink("Se connecter", "Index", "Client", null, new { @class = "btn btn-default" })</p>
+            </div>
+        </div>
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - CARYS</p>
