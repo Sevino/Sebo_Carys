@@ -54,7 +54,7 @@ namespace Front_Office.Models
 
         public List<Genre> ObtenirGenresParCategorie(Categorie categorie)
         {
-            return bdd.Genres.Where(genre => genre.Categorie == categorie).ToList();
+            return bdd.Genres.Where(genre => genre.Categorie.IdCategorie == categorie.IdCategorie).ToList();
         }
 
         public Genre ObtenirGenre(int id)
@@ -74,8 +74,12 @@ namespace Front_Office.Models
 
         public List<Article> ObtenirArticlesParCategorie(Categorie categorie)
         {
-            List<Genre> genres = ObtenirGenresParCategorie(categorie);
-            return bdd.Articles.Where(article => genres.Contains(article.Genre)).ToList();
+            return bdd.Articles.Where(article => article.Genre.Categorie.IdCategorie == categorie.IdCategorie).ToList();
+        }
+
+        public Article ObtenirArticle(int id)
+        {
+            return bdd.Articles.Where(article => article.Reference == id).FirstOrDefault();
         }
 
         public void Dispose()

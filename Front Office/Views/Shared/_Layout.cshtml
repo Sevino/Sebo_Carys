@@ -25,7 +25,7 @@
                 <ul class="nav navbar-nav">
                     @foreach (Front_Office.Models.Categorie categorie in Model.Categories)
                     {
-                        <li>@Html.ActionLink(categorie.LibelleCategorie, "Catalogue", "Home", new { id = categorie.IdCategorie }, null)</li>
+                        <li>@Html.ActionLink(categorie.LibelleCategorie, "Index", "Catalogue", new { id = categorie.IdCategorie }, null)</li>
                     }
                 </ul>
             </div>

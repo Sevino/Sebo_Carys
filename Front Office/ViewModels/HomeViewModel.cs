@@ -11,5 +11,6 @@ namespace Front_Office.ViewModels
         public List<Categorie> Categories { get; set; }
         public Categorie CategorieChoisie { get; set; }
         public List<Article> Articles { get; set; }
+        public Article ArticleChoisi { get; set; }
     }
 }

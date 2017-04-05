@@ -1,0 +1,41 @@
+﻿@model Front_Office.ViewModels.HomeViewModel
+
+@{
+    ViewBag.Title = "Catalogue";
+}
+
+<div class="row">
+    <h2>@ViewBag.Title</h2>
+    @if (Model.CategorieChoisie != null)
+    {
+        <h3>@Model.CategorieChoisie.LibelleCategorie</h3>
+    }
+    @if (!Model.Articles.Any())
+    {
+        <p>Aucun article de cette catégorie.</p>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Article</th>
+                    <th>Genre</th>
+                    <th>Prix</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Front_Office.Models.Article article in Model.Articles)
+                {
+                    <tr>
+                        <td>@Html.ActionLink(article.LibelleArticle, "Article", "Catalogue", new { id = @article.Reference }, null)</td>
+                        <td>@article.IdGenre</td>
+                        <td>@article.Prix</td>
+                        <td>@Html.ActionLink("Ajouter", "Index", "Catalogue", null, new { @class = "btn btn-primary pull-right" })</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+</div>

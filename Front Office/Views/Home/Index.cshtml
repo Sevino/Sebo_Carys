@@ -1,11 +1,13 @@
-﻿@{
+﻿@model Front_Office.ViewModels.HomeViewModel
+
+@{
     ViewBag.Title = "Home Page";
 }
 
 <div class="jumbotron">
     <h1>CARYS</h1>
     <p class="lead">Bienvenue sur notre site.</p>
-    <p>@Html.ActionLink("Afficher le catalogue »", "Catalogue", "Home", null, new { @class = "btn btn-primary btn-lg" })</p>
+    <p>@Html.ActionLink("Afficher le catalogue »", "Index", "Catalogue", null, new { @class = "btn btn-primary btn-lg" })</p>
 </div>
 
 <div class="row">

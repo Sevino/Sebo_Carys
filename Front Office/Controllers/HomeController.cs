@@ -16,9 +16,7 @@ namespace Front_Office.Controllers
             {
                 HomeViewModel model = new HomeViewModel
                 {
-                    Categories = context.ObtenirCategories(),
-                    CategorieChoisie = null,
-                    Articles = context.ObtenirArticles()
+                    Categories = context.ObtenirCategories()
                 };
                 return View(model);
             }
@@ -36,20 +34,6 @@ namespace Front_Office.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
-        }
-
-        public ActionResult Catalogue(int? id)
-        {
-            using (var context = new Front())
-            {
-                HomeViewModel model = new HomeViewModel
-                {
-                    Categories = context.ObtenirCategories(),
-                    CategorieChoisie = (id.HasValue ? context.ObtenirCategorie(id.Value) : null),
-                    Articles = (id.HasValue ? context.ObtenirArticlesParCategorie(context.ObtenirCategorie(id.Value)) : context.ObtenirArticles())
-                };
-                return View(model);
-            }
         }
     }
 }

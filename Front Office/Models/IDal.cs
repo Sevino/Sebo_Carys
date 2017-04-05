@@ -18,5 +18,6 @@ namespace Front_Office.Models
         Genre ObtenirGenreParNom(string nom);
         List<Article> ObtenirArticles();
         List<Article> ObtenirArticlesParCategorie(Categorie categorie);
+        Article ObtenirArticle(int id);
     }
 }
