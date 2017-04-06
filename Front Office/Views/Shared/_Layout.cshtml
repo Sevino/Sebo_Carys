@@ -1,6 +1,4 @@
-﻿@model Front_Office.ViewModels.HomeViewModel
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -23,7 +21,7 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    @foreach (Front_Office.Models.Categorie categorie in Model.Categories)
+                    @foreach (Front_Office.Models.Categorie categorie in Front_Office.Models.BddContext.ObtenirCategories())
                     {
                         <li>@Html.ActionLink(categorie.LibelleCategorie, "Index", "Catalogue", new { id = categorie.IdCategorie }, null)</li>
                     }

@@ -4,6 +4,7 @@ namespace Front_Office.Models
     using System.Data.Entity;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Linq;
+    using System.Collections.Generic;
 
     public partial class BddContext : DbContext
     {
@@ -29,6 +30,11 @@ namespace Front_Office.Models
         public virtual DbSet<Promotion> Promotions { get; set; }
         public virtual DbSet<Role> Roles { get; set; }
         public virtual DbSet<StockArticle> StockArticles { get; set; }
+
+        public static List<Categorie> ObtenirCategories()
+        {
+            return new BddContext().Categories.ToList();
+        }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -12,42 +12,21 @@ namespace Front_Office.Controllers
     {
         public ActionResult Index()
         {
-            using (var context = new Front())
-            {
-                HomeViewModel model = new HomeViewModel
-                {
-                    Categories = context.ObtenirCategories()
-                };
-                return View(model);
-            }
+            return View();
         }
 
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
 
-            using (var context = new Front())
-            {
-                HomeViewModel model = new HomeViewModel
-                {
-                    Categories = context.ObtenirCategories()
-                };
-                return View(model);
-            }
+            return View();
         }
 
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
-            using (var context = new Front())
-            {
-                HomeViewModel model = new HomeViewModel
-                {
-                    Categories = context.ObtenirCategories()
-                };
-                return View(model);
-            }
+            return View();
         }
     }
 }

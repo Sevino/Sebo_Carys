@@ -6,11 +6,9 @@ using System.Web;
 
 namespace Front_Office.ViewModels
 {
-    public class HomeViewModel
+    public class ClientViewModel
     {
-        public Categorie CategorieChoisie { get; set; }
-        public List<Article> Articles { get; set; }
-        public Article ArticleChoisi { get; set; }
         public Client Client { get; set; }
+        public bool Connecte { get; set; }
     }
 }

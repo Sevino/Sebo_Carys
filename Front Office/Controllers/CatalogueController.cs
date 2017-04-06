@@ -16,7 +16,6 @@ namespace Front_Office.Controllers
             {
                 HomeViewModel model = new HomeViewModel
                 {
-                    Categories = context.ObtenirCategories(),
                     CategorieChoisie = id.HasValue ? context.ObtenirCategorie(id.Value) : null,
                     Articles = id.HasValue ? context.ObtenirArticlesParCategorie(context.ObtenirCategorie(id.Value)) : context.ObtenirArticles()
                 };
@@ -30,7 +29,6 @@ namespace Front_Office.Controllers
             {
                 HomeViewModel model = new HomeViewModel
                 {
-                    Categories = context.ObtenirCategories(),
                     ArticleChoisi = context.ObtenirArticle(id)
                 };
                 return View(model);

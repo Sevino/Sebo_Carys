@@ -1,4 +1,4 @@
-﻿@model Front_Office.ViewModels.HomeViewModel
+﻿@model Front_Office.ViewModels.ClientViewModel
 
 @{
     ViewBag.Title = "CARYS - Connexion";
@@ -6,7 +6,7 @@
 
 <div class="jumbotron">
     <h1>Connexion</h1>
-    @if (Model.Client != null)
+    @if (Model.Connecte)
     {
         <p>Bienvenue @Model.Client.PrenomClient !</p>
     }

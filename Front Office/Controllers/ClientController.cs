@@ -14,23 +14,23 @@ namespace Front_Office.Controllers
         {
             using (var context = new Front())
             {
-                HomeViewModel model = new HomeViewModel
+                ClientViewModel model = new ClientViewModel
                 {
-                    Categories = context.ObtenirCategories()
-                };
-                return View(model);
-            }
+                    Connecte = false
+            };
+            return View(model);
         }
+    }
 
         [HttpPost]
         public ActionResult Connexion(Client client)
         {
             using (var context = new Front())
             {
-                HomeViewModel model = new HomeViewModel
+                ClientViewModel model = new ClientViewModel
                 {
-                    Categories = context.ObtenirCategories(),
-                    Client = context.ConnecterClient(client.EmailClient, client.MotDePasseClient)
+                    Client = context.ConnecterClient(client.EmailClient, client.MotDePasseClient),
+                    Connecte = true
                 };
                 return View(model);
             }
@@ -38,14 +38,7 @@ namespace Front_Office.Controllers
 
         public ActionResult Inscription()
         {
-            using (var context = new Front())
-            {
-                HomeViewModel model = new HomeViewModel
-                {
-                    Categories = context.ObtenirCategories()
-                };
-                return View(model);
-            }
+            return View();
         }
 
         [HttpPost]
@@ -55,7 +48,6 @@ namespace Front_Office.Controllers
             {
                 HomeViewModel model = new HomeViewModel
                 {
-                    Categories = context.ObtenirCategories(),
                     Client = context.ConnecterClient(client.EmailClient, client.MotDePasseClient)
                 };
                 return View(model);
