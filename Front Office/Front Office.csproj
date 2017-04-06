@@ -230,8 +230,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Catalogue\Index.cshtml" />
     <Content Include="Views\Catalogue\Article.cshtml" />
-    <Content Include="Views\Client\Index.cshtml" />
     <Content Include="Views\Client\Connexion.cshtml" />
+    <Content Include="Views\Client\Inscription.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

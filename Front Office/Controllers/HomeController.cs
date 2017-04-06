@@ -26,14 +26,28 @@ namespace Front_Office.Controllers
         {
             ViewBag.Message = "Your application description page.";
 
-            return View();
+            using (var context = new Front())
+            {
+                HomeViewModel model = new HomeViewModel
+                {
+                    Categories = context.ObtenirCategories()
+                };
+                return View(model);
+            }
         }
 
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
-            return View();
+            using (var context = new Front())
+            {
+                HomeViewModel model = new HomeViewModel
+                {
+                    Categories = context.ObtenirCategories()
+                };
+                return View(model);
+            }
         }
     }
 }

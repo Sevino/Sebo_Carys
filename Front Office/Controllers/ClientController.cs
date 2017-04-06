@@ -10,7 +10,7 @@ namespace Front_Office.Controllers
 {
     public class ClientController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Connexion()
         {
             using (var context = new Front())
             {
@@ -24,6 +24,32 @@ namespace Front_Office.Controllers
 
         [HttpPost]
         public ActionResult Connexion(Client client)
+        {
+            using (var context = new Front())
+            {
+                HomeViewModel model = new HomeViewModel
+                {
+                    Categories = context.ObtenirCategories(),
+                    Client = context.ConnecterClient(client.EmailClient, client.MotDePasseClient)
+                };
+                return View(model);
+            }
+        }
+
+        public ActionResult Inscription()
+        {
+            using (var context = new Front())
+            {
+                HomeViewModel model = new HomeViewModel
+                {
+                    Categories = context.ObtenirCategories()
+                };
+                return View(model);
+            }
+        }
+
+        [HttpPost]
+        public ActionResult Inscription(Client client)
         {
             using (var context = new Front())
             {

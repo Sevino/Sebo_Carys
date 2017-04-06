@@ -31,10 +31,6 @@ textarea {
     max-width: 200px;
 }
 
-.img-responsive:hover {
-    transform: scale(1.5);
-}
-
 .jumbotron {
     overflow: hidden;
 }
