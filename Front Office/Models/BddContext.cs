@@ -41,6 +41,7 @@ namespace Front_Office.Models
             return new BddContext().Categories.ToList();
         }
 
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Acteur>()
