@@ -10,10 +10,15 @@ namespace Front_Office.Models
     public partial class StockArticle
     {
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int Reference { get; set; }
+        public int IdStock { get; set; }
 
         public int Quantite { get; set; }
+
+        public int QuantiteReserve { get; set; }
+
+        public int? Seuil { get; set; }
+
+        public int Reference { get; set; }
 
         public virtual Article Article { get; set; }
     }

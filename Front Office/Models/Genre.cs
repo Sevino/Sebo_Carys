@@ -20,7 +20,6 @@ namespace Front_Office.Models
 
         [Required]
         [StringLength(200)]
-        [Index(IsUnique = true)]
         public string LibelleGenre { get; set; }
 
         public int IdCategorie { get; set; }

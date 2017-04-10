@@ -40,18 +40,29 @@ namespace Front_Office.Controllers
         {
             return View();
         }
-
+        /// <summary>
+        /// Fonction d'inscription dans la base d'un client
+        /// </summary>
+        /// <param name="client"></param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Inscription(Client client)
         {
+            if (!ModelState.IsValid)
+            {
+                return View();
+            }
             using (var context = new Front())
             {
-                HomeViewModel model = new HomeViewModel
-                {
-                    Client = context.ConnecterClient(client.EmailClient, client.MotDePasseClient)
+                //Inscription du client dans la base
+                context.InscriptionClient(client.NomClient, client.PrenomClient, client.AdresseClient, client.CodePostalClient, client.VilleClient, client.EmailClient, client.MotDePasseClient, client.TelephoneClient);
+                ClientViewModel model = new ClientViewModel
+                {                   
+                    Connecte = false
                 };
-                return View(model);
+                // On renvoi le client sur la page de connexion
+                return RedirectToAction("Connexion");
             }
-        }
+        }        
     }
 }

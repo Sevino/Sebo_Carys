@@ -19,6 +19,7 @@ namespace Front_Office.Models
         public virtual DbSet<Categorie> Categories { get; set; }
         public virtual DbSet<Client> Clients { get; set; }
         public virtual DbSet<CommandeFournisseur> CommandeFournisseurs { get; set; }
+        public virtual DbSet<EtatCommande> EtatCommandes { get; set; }
         public virtual DbSet<Fournisseur> Fournisseurs { get; set; }
         public virtual DbSet<Genre> Genres { get; set; }
         public virtual DbSet<LigneCommande> LigneCommandes { get; set; }
@@ -28,9 +29,13 @@ namespace Front_Office.Models
         public virtual DbSet<Paiement> Paiements { get; set; }
         public virtual DbSet<PanierCommande> PanierCommandes { get; set; }
         public virtual DbSet<Promotion> Promotions { get; set; }
-        public virtual DbSet<Role> Roles { get; set; }
+        public virtual DbSet<RoleActeur> RoleActeurs { get; set; }
         public virtual DbSet<StockArticle> StockArticles { get; set; }
 
+        /// <summary>
+        /// Permet d'obtenir la liste des catégories
+        /// </summary>
+        /// <returns></returns>
         public static List<Categorie> ObtenirCategories()
         {
             return new BddContext().Categories.ToList();
@@ -52,6 +57,14 @@ namespace Front_Office.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Article>()
+                .Property(e => e.PhotoArticle)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Article>()
+                .Property(e => e.DescriptionArticle)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<Article>()
                 .HasMany(e => e.LigneCommandes)
                 .WithRequired(e => e.Article)
                 .WillCascadeOnDelete(false);
@@ -67,8 +80,9 @@ namespace Front_Office.Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Article>()
-                .HasOptional(e => e.StockArticle)
-                .WithRequired(e => e.Article);
+                .HasMany(e => e.StockArticles)
+                .WithRequired(e => e.Article)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Categorie>()
                 .Property(e => e.LibelleCategorie)
@@ -104,17 +118,25 @@ namespace Front_Office.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Client>()
-                .Property(e => e.MotDePasseClient)
+                .Property(e => e.TelephoneClient)
                 .IsUnicode(false);
 
             modelBuilder.Entity<Client>()
-                .HasMany(e => e.PanierCommandes)
-                .WithRequired(e => e.Client)
-                .WillCascadeOnDelete(false);
+                .Property(e => e.MotDePasseClient)
+                .IsUnicode(false);
 
             modelBuilder.Entity<CommandeFournisseur>()
                 .HasMany(e => e.LigneCommandeFournisseurs)
                 .WithRequired(e => e.CommandeFournisseur)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<EtatCommande>()
+                .Property(e => e.LibelleEtat)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<EtatCommande>()
+                .HasMany(e => e.PanierCommandes)
+                .WithRequired(e => e.EtatCommande)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Fournisseur>()
@@ -149,16 +171,6 @@ namespace Front_Office.Models
                 .Property(e => e.ModePaiement)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Paiement>()
-                .HasMany(e => e.PanierCommandes)
-                .WithRequired(e => e.Paiement)
-                .HasForeignKey(e => e.IdPaiement)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<PanierCommande>()
-                .Property(e => e.EtatCommande)
-                .IsUnicode(false);
-
             modelBuilder.Entity<PanierCommande>()
                 .HasMany(e => e.LigneCommandes)
                 .WithRequired(e => e.PanierCommande)
@@ -172,7 +184,6 @@ namespace Front_Office.Models
             modelBuilder.Entity<PanierCommande>()
                 .HasMany(e => e.Paiements)
                 .WithRequired(e => e.PanierCommande)
-                .HasForeignKey(e => e.NumeroCommande)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Promotion>()
@@ -180,13 +191,13 @@ namespace Front_Office.Models
                 .WithMany(e => e.Promotions)
                 .Map(m => m.ToTable("PromotionArticle").MapLeftKey("IdPromotion").MapRightKey("Reference"));
 
-            modelBuilder.Entity<Role>()
-                .Property(e => e.LibelleRole)
+            modelBuilder.Entity<RoleActeur>()
+                .Property(e => e.LibelleRoleActeur)
                 .IsUnicode(false);
 
-            modelBuilder.Entity<Role>()
+            modelBuilder.Entity<RoleActeur>()
                 .HasMany(e => e.Acteurs)
-                .WithRequired(e => e.Role)
+                .WithRequired(e => e.RoleActeur)
                 .WillCascadeOnDelete(false);
         }
     }

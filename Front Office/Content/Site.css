@@ -16,13 +16,6 @@
     white-space: normal;
 }
 
-/* Set width on the form input elements since they're 100% wide by default */
-input,
-select,
-textarea {
-    max-width: 280px;
-}
-
 .table > tbody > tr > td {
     vertical-align: middle;
 }
@@ -33,4 +26,22 @@ textarea {
 
 .jumbotron {
     overflow: hidden;
+}
+
+/* Style des message d'erreur */
+.field-validation-error {
+    color: #f00;
+}
+
+.validation-summary-errors {
+    color: #f00;
+    font-weight: bold
+}
+ .input-validation-error {
+    border: 2px solid #f00;
+    background-color: #fee
+}
+
+input[type="checkbox"].input-validation-error {
+    outline: 2px solid #f00;
 }

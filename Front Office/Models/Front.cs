@@ -87,9 +87,36 @@ namespace Front_Office.Models
             return bdd.Clients.Where(client => client.EmailClient == email && client.MotDePasseClient == motDePasse).FirstOrDefault();
         }
 
+        /// <summary>
+        ///  Fonction qui inscrit un nouveau client dans la base de donnée
+        /// </summary>
+        /// <param name="nom"></param>
+        /// <param name="prenom"></param>
+        /// <param name="adresse"></param>
+        /// <param name="codePostal"></param>
+        /// <param name="ville"></param>
+        /// <param name="email"></param>
+        /// <param name="motDePasse"></param>
+        /// <param name="numTel"></param>
+        public void InscriptionClient(string nom, string prenom, string adresse, string codePostal, string ville, string email, string motDePasse, string numTel)
+        {
+            bdd.Clients.Add(new Client
+            {
+                NomClient = nom,
+                PrenomClient = prenom,
+                AdresseClient = adresse,
+                CodePostalClient = codePostal,
+                VilleClient = ville,
+                EmailClient = email,
+                MotDePasseClient = motDePasse,
+                TelephoneClient = numTel
+            });
+            bdd.SaveChanges();
+        }
+
         public void Dispose()
         {
             bdd.Dispose();
-        }
+        }       
     }
 }

@@ -22,15 +22,13 @@ namespace Front_Office.Models
 
         public DateTime DateCommande { get; set; }
 
-        [Required]
-        [StringLength(200)]
-        public string EtatCommande { get; set; }
+        public int IdEtat { get; set; }
 
-        public int IdPaiement { get; set; }
+        public int? IdPaiement { get; set; }
 
         public int NumeroClient { get; set; }
 
-        public virtual Client Client { get; set; }
+        public virtual EtatCommande EtatCommande { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<LigneCommande> LigneCommandes { get; set; }
@@ -40,7 +38,5 @@ namespace Front_Office.Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Paiement> Paiements { get; set; }
-
-        public virtual Paiement Paiement { get; set; }
     }
 }

@@ -21,7 +21,6 @@ namespace Front_Office.Models
 
         [Required]
         [StringLength(200)]
-        [Index(IsUnique = true)]
         public string NomFournisseur { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
