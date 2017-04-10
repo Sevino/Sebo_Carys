@@ -10,6 +10,5 @@ namespace Front_Office.ViewModels
     {
         public Client Client { get; set; }
         public bool Connecte { get; set; }
-        public string Message { get; set; }
     }
 }

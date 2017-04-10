@@ -38,6 +38,8 @@ namespace Front_Office.Models
 
         public bool? Reapprovisionnable { get; set; }
 
+        public double PrixFournisseur { get; set; }
+
         public int IdStock { get; set; }
 
         public int IdGenre { get; set; }

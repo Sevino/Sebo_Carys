@@ -29,12 +29,9 @@ namespace Front_Office.Controllers
             {
                 ClientViewModel model = new ClientViewModel
                 {
-                    Client = context.ConnecterClient(client.EmailClient, client.MotDePasseClient)
+                    Client = context.ConnecterClient(client.EmailClient, client.MotDePasseClient),
+                    Connecte = true
                 };
-
-                model.Connecte = model.Client == null ? false : true;
-                model.Message = (ModelState.IsValid && model.Client == null) ? "Ce client n'existe pas" : "";
-
                 return View(model);
             }
         }
@@ -43,7 +40,6 @@ namespace Front_Office.Controllers
         {
             return View();
         }
-
         /// <summary>
         /// Fonction d'inscription dans la base d'un client
         /// </summary>
