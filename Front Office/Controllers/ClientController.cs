@@ -17,10 +17,10 @@ namespace Front_Office.Controllers
                 ClientViewModel model = new ClientViewModel
                 {
                     Connecte = false
-            };
-            return View(model);
+                };
+                return View(model);
+            }
         }
-    }
 
         [HttpPost]
         public ActionResult Connexion(Client client)
@@ -29,9 +29,12 @@ namespace Front_Office.Controllers
             {
                 ClientViewModel model = new ClientViewModel
                 {
-                    Client = context.ConnecterClient(client.EmailClient, client.MotDePasseClient),
-                    Connecte = true
+                    Client = context.ConnecterClient(client.EmailClient, client.MotDePasseClient)
                 };
+
+                model.Connecte = model.Client == null ? false : true;
+                model.Message = (ModelState.IsValid && model.Client == null) ? "Ce client n'existe pas" : "";
+
                 return View(model);
             }
         }

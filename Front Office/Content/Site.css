@@ -34,3 +34,13 @@ textarea {
 .jumbotron {
     overflow: hidden;
 }
+
+.erreur {
+    margin-left: 10px;
+    color: red;
+    font-weight: normal;
+}
+
+.double-input input {
+    max-width: 140px;
+}

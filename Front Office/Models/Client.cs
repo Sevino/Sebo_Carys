@@ -38,13 +38,13 @@ namespace Front_Office.Models
         [StringLength(250)]
         public string VilleClient { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Veuillez saisir un email")]
         [StringLength(250)]
         [Index(IsUnique = true)]
         [Display(Name = "Email")]
         public string EmailClient { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Veuilllez saisir un mot de passe")]
         [StringLength(250)]
         [Display(Name = "Mot de passe")]
         public string MotDePasseClient { get; set; }
