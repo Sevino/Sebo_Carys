@@ -33,14 +33,11 @@ namespace Front_Office.Models
         public string PhotoArticle { get; set; }
 
         [Column(TypeName = "text")]
-        [Required]
         public string DescriptionArticle { get; set; }
 
         public bool? Reapprovisionnable { get; set; }
 
-        public double PrixFournisseur { get; set; }
-
-        public int IdStock { get; set; }
+        public int? IdStock { get; set; }
 
         public int IdGenre { get; set; }
 
