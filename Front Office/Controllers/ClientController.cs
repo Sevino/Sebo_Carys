@@ -63,7 +63,7 @@ namespace Front_Office.Controllers
                 {                   
                     Connecte = false
                 };
-                // On renvoi le client sur la page de connexion
+                // On renvoie le client sur la page de connexion
                 return RedirectToAction("Connexion");
             }
         }        

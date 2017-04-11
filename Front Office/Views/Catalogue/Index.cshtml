@@ -32,7 +32,7 @@
                         <td>@Html.ActionLink(article.LibelleArticle, "Article", "Catalogue", new { id = @article.Reference }, null)</td>
                         <td>@article.IdGenre</td>
                         <td>@String.Format("{0:0.00}", @article.Prix) €</td>
-                        <td>@Html.ActionLink("Ajouter", "Index", "Catalogue", null, new { @class = "btn btn-primary pull-right" })</td>
+                        <td>@Html.ActionLink("Ajouter", "Index", "Panier", new { id = article.Reference }, new { @class = "btn btn-primary pull-right" })</td>
                     </tr>
                 }
             </tbody>

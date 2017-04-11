@@ -117,6 +117,12 @@ namespace Front_Office.Models
         public void Dispose()
         {
             bdd.Dispose();
-        }       
+        }
+
+        public void AjouterArticle(PanierCommande commande, Article article)
+        {
+            bdd.LigneCommandes.Add(new LigneCommande { Reference = article.Reference, NumeroCommande = commande.NumeroCommande, QuantiteCommande = 1, PrixUnitaire = article.PrixAchat.Value * (1 + article.Genre.Categorie.Tva) });
+            bdd.SaveChanges();
+        }
     }
 }

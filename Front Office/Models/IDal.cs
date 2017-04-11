@@ -21,5 +21,6 @@ namespace Front_Office.Models
         Article ObtenirArticle(int id);
         Client ConnecterClient(string email, string motDePasse);
         void InscriptionClient(string nom, string prenom, string adresse, string codePostal, string ville, string email, string motDePasse, string numTel);
+        void AjouterArticle(PanierCommande commande, Article article);
     }
 }

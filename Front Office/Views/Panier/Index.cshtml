@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "CARYS - Panier";
+    Front_Office.Models.PanierCommande commande = HttpContext.Current.Session["commande"];
+}
+
+<div class="jumbotron">
+    <h1>Panier</h1>
+    @foreach (Front_Office.Models.LigneCommande ligneCommande in commande.LigneCommandes)
+    {
+        <p>@ligneCommande.Article.LibelleArticle</p>
+    }
+</div>
