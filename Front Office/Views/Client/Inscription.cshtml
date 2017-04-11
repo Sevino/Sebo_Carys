@@ -7,6 +7,7 @@
 <!-- Affichage de la page d'inscription -->
 <div class="jumbotron">
     <h1>Inscription</h1>
+    @Html.AntiForgeryToken()
     <div class="row">
         <!-- Formulaire -->
         @using (Html.BeginForm("Inscription", "Client", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
@@ -103,9 +104,9 @@
                 <div class="row">
                     <div class="col-lg-2"></div>
                     <div class="col-lg-4">
-                        <input type="submit" value="Annuler" class="btn btn-primary btn-block" />
+                        <input type="button" value="Retour" onclick="location.href='@Url.Action("Index","Home")';" class="btn btn-primary btn-block"/>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-4">                        
                         <input type="submit" value="Inscrire" class="btn btn-primary btn-block" />
                     </div>
                     <div class="col-lg-2"></div>

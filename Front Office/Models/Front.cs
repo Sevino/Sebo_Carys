@@ -112,7 +112,7 @@ namespace Front_Office.Models
                 TelephoneClient = numTel
             });
             bdd.SaveChanges();
-        }      
+        }
         /// <summary>
         /// Fonction qui verifie l'existence
         /// </summary>
@@ -120,17 +120,31 @@ namespace Front_Office.Models
         /// <param name="prenom"></param>
         /// <returns> Return true si le client existe et false si il n'existe pas</returns>
         public bool VerifierExistenceClient(string email)
-        {            
+        {
             if (bdd.Clients.Where(client => client.EmailClient == email).FirstOrDefault() != null)
-            {                
+            {
                 return true;
             }
             return false;
         }
 
+        public bool VerifierLoginMotDePasse(string id, string password)
+        {
+            // Si le couple Id / Password est le bon dans la base on renvoi true
+           if(bdd.Clients.Where(client => client.EmailClient==id && client.MotDePasseClient==password).FirstOrDefault() != null)
+            {
+                return true;
+            }
+           // Sinon on renvoi false
+            return false;
+        }
+
+
         public void Dispose()
         {
             bdd.Dispose();
         }
+
+
     }
 }

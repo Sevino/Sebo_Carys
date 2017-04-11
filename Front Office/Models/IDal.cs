@@ -22,5 +22,6 @@ namespace Front_Office.Models
         Client ConnecterClient(string email, string motDePasse);
         void InscriptionClient(string nom, string prenom, string adresse, string codePostal, string ville, string email, string motDePasse, string numTel);
         bool VerifierExistenceClient(string email);
+        bool VerifierLoginMotDePasse(string id, string password);
     }
 }
