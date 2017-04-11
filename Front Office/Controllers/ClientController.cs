@@ -1,5 +1,6 @@
 ﻿using Front_Office.Models;
 using Front_Office.ViewModels;
+using reCAPTCHA.MVC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -41,7 +42,11 @@ namespace Front_Office.Controllers
 
         public ActionResult Inscription()
         {
-            return View();
+            ClientViewModel model = new ClientViewModel
+            {
+                Connecte = false
+            };
+            return View(model);
         }
         /// <summary>
         /// Fonction d'inscription dans la base d'un client
@@ -49,23 +54,33 @@ namespace Front_Office.Controllers
         /// <param name="client"></param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult Inscription(Client client)
-        {
-            if (!ModelState.IsValid)
-            {
-                return View();
-            }
+        [CaptchaValidator]
+        public ActionResult Inscription(Client client, bool captchaValid)
+        {           
             using (var context = new Front())
             {
+                // Si les données ne sont pas bonne ou que le client existe deja on renvoi la page avec les erreurs
+                if (!ModelState.IsValid || context.VerifierExistenceClient(client.EmailClient) )
+                {
+                    ClientViewModel modelerror = new ClientViewModel
+                    {
+                        Connecte = false                       
+                    };
+                    if (context.VerifierExistenceClient(client.EmailClient))
+                    {
+                        modelerror.Message = "Erreur : Cette adresse mail est déja utilisée";                        
+                    }
+                    return View(modelerror);
+                }
                 //Inscription du client dans la base
                 context.InscriptionClient(client.NomClient, client.PrenomClient, client.AdresseClient, client.CodePostalClient, client.VilleClient, client.EmailClient, client.MotDePasseClient, client.TelephoneClient);
                 ClientViewModel model = new ClientViewModel
-                {                   
+                {
                     Connecte = false
                 };
                 // On renvoi le client sur la page de connexion
                 return RedirectToAction("Connexion");
             }
-        }        
+        }
     }
 }

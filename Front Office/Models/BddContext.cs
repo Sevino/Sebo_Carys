@@ -30,8 +30,7 @@ namespace Front_Office.Models
         public virtual DbSet<PanierCommande> PanierCommandes { get; set; }
         public virtual DbSet<Promotion> Promotions { get; set; }
         public virtual DbSet<RoleActeur> RoleActeurs { get; set; }
-        public virtual DbSet<StockArticle> StockArticles { get; set; }
-        public virtual DbSet<sysdiagram> sysdiagrams { get; set; }
+        public virtual DbSet<StockArticle> StockArticles { get; set; }       
 
         /// <summary>
         /// Permet d'obtenir la liste des catégories
