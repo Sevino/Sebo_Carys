@@ -8,6 +8,7 @@ using System.Web.Mvc;
 
 namespace Front_Office.Controllers
 {
+    
     public class CatalogueController : Controller
     {
         public ActionResult Index(int? id)

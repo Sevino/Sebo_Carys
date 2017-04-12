@@ -113,6 +113,68 @@ namespace Front_Office.Models
             });
             bdd.SaveChanges();
         }
+        /// <summary>
+        /// Fonction qui verifie l'existence
+        /// </summary>
+        /// <param name="nom"></param>
+        /// <param name="prenom"></param>
+        /// <returns> Return true si le client existe et false si il n'existe pas</returns>
+        public bool VerifierExistenceClient(string email)
+        {
+            if (bdd.Clients.Where(client => client.EmailClient == email).FirstOrDefault() != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Verirife que le couple mdp/id passer en parametre existe dans la base
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="password"></param>
+        /// <returns></returns>
+        public bool VerifierLoginMotDePasse(string id, string password)
+        {
+            // Si le couple Id / Password est le bon dans la base on renvoi true
+            if (bdd.Clients.Where(client => client.EmailClient == id && client.MotDePasseClient == password).FirstOrDefault() != null)
+            {
+                return true;
+            }
+            // Sinon on renvoi false
+            return false;
+        }
+
+        /// <summary>
+        /// Recupère les info d'un client a partir de son ID
+        /// </summary>
+        /// <param name="identifiant"></param>
+        /// <returns></returns>
+        public Client RecupererInformationClient(string identifiant)
+        {
+            var clientInfo = bdd.Clients.Where(client => client.EmailClient == identifiant).FirstOrDefault();
+            return clientInfo;
+        }
+
+        /// <summary>
+        /// Actualise les données d'un client passé en paramètre
+        /// </summary>
+        /// <param name="c"></param>
+        public void UpdateClient(Client c)
+        {
+            var cli = bdd.Clients.Where(client => client.EmailClient == c.EmailClient).FirstOrDefault();
+            cli.AdresseClient = c.AdresseClient;
+            cli.CodePostalClient = c.CodePostalClient;
+            cli.MotDePasseClient = c.MotDePasseClient;
+            cli.NomClient = c.NomClient;
+            cli.PrenomClient = c.PrenomClient;
+            cli.TelephoneClient = c.TelephoneClient;
+            cli.VilleClient = c.VilleClient;                       
+            bdd.SaveChanges();
+        }
+
+
+       
 
         public void Dispose()
         {

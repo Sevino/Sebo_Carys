@@ -2,17 +2,15 @@
 @using reCAPTCHA.MVC
 
 @{
-    ViewBag.Title = "CARYS - Inscription";
+    ViewBag.Title = "CARYS - Gestion du compte";
 }
-<!-- Affichage de la page d'inscription -->
+<!-- Affichage de la page de gestion du compte -->
 <div class="jumbotron">
-    <h1>Inscription</h1>
-    @Html.AntiForgeryToken()
+    <h1>Gestion du compte</h1>
     <div class="row">
         <!-- Formulaire -->
-        @using (Html.BeginForm("Inscription", "Client", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+        @using (Html.BeginForm("Gestion", "Client", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
         {
-            <!-- Si la page est renvoyé avec une erreur de création (Compte client existant)-->
             if (Model.Message != null)
             {
                 <div class="alert alert-danger">
@@ -23,7 +21,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Client.NomClient, new { @class = "col-lg-2 control-label" })
                 <div class="col-lg-8">
-                    @Html.TextBoxFor(model => model.Client.NomClient, new { @class = "form-control", placeholder = "Nom", tabindex = 1 })
+                    @Html.TextBoxFor(model => model.Client.NomClient, new {@class = "form-control", placeholder = "Nom", tabindex = 1 })
                     @Html.ValidationMessageFor(model => Model.Client.NomClient)
                 </div>
                 <div class="col-lg-2"></div>
@@ -47,14 +45,14 @@
                 <div class="col-lg-2"></div>
             </div>
                  <!-- Code Postal -->
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Client.CodePostalClient, new { @class = "col-lg-2 control-label" })
-                    <div class="col-lg-8">
-                        @Html.TextBoxFor(model => model.Client.CodePostalClient, new { @class = "form-control", placeholder = "Code Postal", tabindex = 4 })
-                        @Html.ValidationMessageFor(model => Model.Client.CodePostalClient)
-                    </div>
-                    <div class="col-lg-2"></div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Client.CodePostalClient, new { @class = "col-lg-2 control-label" })
+                <div class="col-lg-8">
+                    @Html.TextBoxFor(model => model.Client.CodePostalClient, new { @class = "form-control", placeholder = "Code Postal", tabindex = 4 })
+                    @Html.ValidationMessageFor(model => Model.Client.CodePostalClient)
                 </div>
+                <div class="col-lg-2"></div>
+            </div>
                  <!-- Ville Client -->
                 <div class="form-group">
                     @Html.LabelFor(model => model.Client.VilleClient, new { @class = "col-lg-2 control-label" })
@@ -77,7 +75,7 @@
                 <div class="form-group">
                     @Html.LabelFor(model => model.Client.EmailClient, new { @class = "col-lg-2 control-label" })
                     <div class="col-lg-8">
-                        @Html.TextBoxFor(model => model.Client.EmailClient, new { @class = "form-control", placeholder = "Email", tabindex = 7, type = "email" })
+                        @Html.TextBoxFor(model => model.Client.EmailClient, new { @class = "form-control",@readonly="readonly", placeholder = "Email", tabindex = 7, type = "email" })
                         @Html.ValidationMessageFor(model => Model.Client.EmailClient)
                     </div>
                     <div class="col-lg-2"></div>
@@ -91,23 +89,14 @@
                     </div>
                     <div class="col-lg-2"></div>
                 </div>
-                <!-- Captcha -->
-                <div class="form-group">
-                    <div class="col-lg-4"></div>
-                    <div class="col-lg-4">
-                        @Html.Recaptcha()
-                        @Html.ValidationMessage("ReCaptcha")
-                    </div>
-                    <div class="col-lg-4"></div>
-                </div>
-                 <!-- Bouton -->
+                <!-- Bouton -->
                 <div class="row">
                     <div class="col-lg-2"></div>
                     <div class="col-lg-4">
-                        <input type="button" value="Retour" onclick="location.href='@Url.Action("Index","Home")';" class="btn btn-primary btn-block"/>
+                        <input type="button" value="Retour" onclick="location.href='@Url.Action("Index","Home")';" class="btn btn-primary btn-block" />
                     </div>
-                    <div class="col-lg-4">                        
-                        <input type="submit" value="Inscrire" class="btn btn-primary btn-block" />
+                    <div class="col-lg-4">
+                        <input type="submit" value="Modifier" class="btn btn-primary btn-block" />
                     </div>
                     <div class="col-lg-2"></div>
                 </div>

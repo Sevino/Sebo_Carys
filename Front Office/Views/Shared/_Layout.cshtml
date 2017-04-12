@@ -1,4 +1,19 @@
 ﻿<!DOCTYPE html>
+@using System.Security.Claims
+@{
+    var homeLinkText = "Nom de l'application";
+
+    if (Request.IsAuthenticated)
+    {
+        var claimIdentity = User.Identity as ClaimsIdentity;
+        if (claimIdentity != null)
+        {
+            homeLinkText = "Bonjour, " + claimIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+            var textSplit = homeLinkText.Split('@');
+            homeLinkText = textSplit[0];
+        }
+    }
+}
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -39,16 +54,34 @@
     <div class="container body-content">
         @RenderBody()
         <div class="row">
+            <!-- Si l'utilisateur n'est pas authentifié -->
+            @if (!Request.IsAuthenticated)
+            {
             <div class="col-md-4">
                 <h2>Déjà client</h2>
                 <p>Cliquez ici pour accéder à votre compte.</p>
-                <p>@Html.ActionLink("Se connecter", "Connexion", "Client", null, new { @class = "btn btn-default" })</p>
+                <p>@Html.ActionLink("Se connecter", "Login", "Authentication", null, new { @class = "btn btn-default" })</p>
             </div>
             <div class="col-md-4">
                 <h2>Inscription</h2>
                 <p>Cliquez ici pour créer un compte.</p>
                 <p>@Html.ActionLink("S'inscrire", "Inscription", "Client", null, new { @class = "btn btn-default" })</p>
             </div>
+            }
+            <!-- Si l'utilisateur est authentifié -->
+            @if (Request.IsAuthenticated)
+            {
+                <div class="col-md-4">
+                    <h2>@homeLinkText</h2>
+                    <p>Cliquez ici pour vous déconnecter.</p>
+                    <p>@Html.ActionLink("Se déconnecter", "Logout", "Authentication", null, new { @class = "btn btn-default" })</p>
+                </div>
+                <div class="col-md-4">
+                    <h2>Compte</h2>
+                    <p>Cliquez ici pour gérer votre compte.</p>
+                    <p>@Html.ActionLink("Gestion", "Gestion", "Client", null, new { @class = "btn btn-default" })</p>
+                </div>
+            }
             <div class="col-md-4">
                 <h2>Contact</h2>
                 <p>Cliquez ici pour nous contacter.</p>
