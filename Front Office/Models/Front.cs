@@ -223,5 +223,13 @@ namespace Front_Office.Models
         {
             return bdd.LigneCommandes.Where(l => l.NumeroCommande == panier.NumeroCommande).Count();
         }
+
+        public void ValiderPanier(PanierCommande commande)
+        {
+            PanierCommande panier = bdd.PanierCommandes.SingleOrDefault(c => c.NumeroCommande == commande.NumeroCommande);
+            panier.IdEtat = bdd.EtatCommandes.First(e => e.LibelleEtat == "En attente de paiement").IdEtat;
+            panier.DateCommande = DateTime.Now;
+            bdd.SaveChanges();
+        }
     }
 }

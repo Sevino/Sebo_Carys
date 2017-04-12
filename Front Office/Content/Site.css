@@ -67,3 +67,9 @@ input[type="checkbox"].input-validation-error {
 .ajouter {
     width: 200px;
 }
+
+.img-mini {
+    max-width: 100px;
+    display: inline;
+    margin-right: 5px;
+}

@@ -51,6 +51,11 @@ namespace Front_Office.Models
             return new BddContext().Genres.FirstOrDefault(c => c.IdGenre == id);
         }
 
+        public static Client ObtenirClient(int id)
+        {
+            return new BddContext().Clients.FirstOrDefault(c => c.NumeroClient == id);
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Acteur>()

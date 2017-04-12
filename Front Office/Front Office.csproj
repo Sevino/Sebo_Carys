@@ -325,6 +325,7 @@
     <Content Include="Views\Panier\Index.cshtml" />
     <Content Include="Views\Authentication\Login.cshtml" />
     <Content Include="Views\Client\Gestion.cshtml" />
+    <Content Include="Views\Panier\Facture.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

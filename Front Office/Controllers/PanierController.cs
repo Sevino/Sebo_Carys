@@ -53,5 +53,15 @@ namespace Front_Office.Controllers
 
             return RedirectToAction("Index");
         }
+
+        public ActionResult Facture()
+        {
+            Panier();
+            using (var context = new Front())
+            {
+                context.ValiderPanier(panier);
+            };
+            return View(panier);
+        }
     }
 }

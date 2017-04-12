@@ -30,5 +30,6 @@ namespace Front_Office.Models
         PanierCommande ObtenirPanier(Client client);
         List<LigneCommande> ObtenirListeArticles(PanierCommande panier);
         int ObtenirNombreArticles(PanierCommande panier);
+        void ValiderPanier(PanierCommande commande);
     }
 }
