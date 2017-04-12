@@ -1,0 +1,44 @@
+﻿@model List<Front_Office.Models.LigneCommande>
+
+@{
+    ViewBag.Title = "CARYS - Panier";
+    double total = 0;
+    foreach (Front_Office.Models.LigneCommande ligne in Model)
+    {
+        total += (ligne.QuantiteCommande * ligne.PrixUnitaire);
+    }
+}
+
+<div class="jumbotron">
+    <h1>Panier</h1>
+    @if (!Model.Any())
+    {
+        <p>Aucun article dans le panier !</p>
+    }
+    else
+    {
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Article</th>
+                    <th>Quantite</th>
+                    <th>Prix</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (Front_Office.Models.LigneCommande ligne in Model)
+                {
+                    <tr>
+                        <td>@ligne.Article.LibelleArticle</td>
+                        <td>@Html.TextBox("quantite", ligne.QuantiteCommande, new { @class = "form-control" })</td>
+                        <td>@String.Format("{0:0.00}", @ligne.PrixUnitaire) €</td>
+                        <td>@Html.ActionLink("Supprimer", "Supprimer", "Panier", new { id = ligne.Article.Reference }, new { @class = "btn btn-primary pull-right" })</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <p>Total : @total €</p>
+        @Html.ActionLink("Commander", "Commander", "Panier", null, new { @class = "btn btn-primary pull-right" })
+    }
+</div>

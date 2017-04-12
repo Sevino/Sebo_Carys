@@ -16,6 +16,13 @@
     white-space: normal;
 }
 
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 400px;
+}
+
 .table > tbody > tr > td {
     vertical-align: middle;
 }
@@ -53,5 +60,5 @@ input[type="checkbox"].input-validation-error {
 }
 
 .double-input input {
-    max-width: 140px;
+    max-width: 200px;
 }

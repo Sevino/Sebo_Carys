@@ -95,7 +95,7 @@ namespace Front_Office.Controllers
                 ClientViewModel model = new ClientViewModel
                 {                   
                 };
-                // On renvoi le client sur la page d'accueil
+                // On renvoie le client sur la page d'accueil
                 return RedirectToAction("Index", "Home");
             }
         }

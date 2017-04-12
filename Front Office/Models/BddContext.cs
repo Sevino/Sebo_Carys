@@ -30,7 +30,7 @@ namespace Front_Office.Models
         public virtual DbSet<PanierCommande> PanierCommandes { get; set; }
         public virtual DbSet<Promotion> Promotions { get; set; }
         public virtual DbSet<RoleActeur> RoleActeurs { get; set; }
-        public virtual DbSet<StockArticle> StockArticles { get; set; }       
+        public virtual DbSet<StockArticle> StockArticles { get; set; }
 
         /// <summary>
         /// Permet d'obtenir la liste des catégories
@@ -39,6 +39,11 @@ namespace Front_Office.Models
         public static List<Categorie> ObtenirCategories()
         {
             return new BddContext().Categories.ToList();
+        }
+
+        public static List<LigneCommande> ObtenirLignesDeCommande(int id)
+        {
+            return new BddContext().LigneCommandes.Where(ligne => ligne.NumeroCommande == id).ToList();
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
