@@ -45,9 +45,13 @@
                         <li>@Html.ActionLink(categorie.LibelleCategorie, "Index", "Catalogue", new { id = categorie.IdCategorie }, null)</li>
                     }
                 </ul>
-                <div class="pull-right">
-                    @Html.ActionLink("Panier", "Index", "Panier", null, new { @class = "navbar-brand" })
-                </div>
+                <!-- Si l'utilisateur est authentifié -->
+                @if (Request.IsAuthenticated)
+                {
+                    <div class="pull-right">
+                        @Html.ActionLink("Panier", "Index", "Panier", null, new { @class = "navbar-brand" })
+                    </div>
+                }
             </div>
         </div>
     </div>
@@ -57,16 +61,16 @@
             <!-- Si l'utilisateur n'est pas authentifié -->
             @if (!Request.IsAuthenticated)
             {
-            <div class="col-md-4">
-                <h2>Déjà client</h2>
-                <p>Cliquez ici pour accéder à votre compte.</p>
-                <p>@Html.ActionLink("Se connecter", "Login", "Authentication", null, new { @class = "btn btn-default" })</p>
-            </div>
-            <div class="col-md-4">
-                <h2>Inscription</h2>
-                <p>Cliquez ici pour créer un compte.</p>
-                <p>@Html.ActionLink("S'inscrire", "Inscription", "Client", null, new { @class = "btn btn-default" })</p>
-            </div>
+                <div class="col-md-4">
+                    <h2>Déjà client</h2>
+                    <p>Cliquez ici pour accéder à votre compte.</p>
+                    <p>@Html.ActionLink("Se connecter", "Login", "Authentication", null, new { @class = "btn btn-default" })</p>
+                </div>
+                <div class="col-md-4">
+                    <h2>Inscription</h2>
+                    <p>Cliquez ici pour créer un compte.</p>
+                    <p>@Html.ActionLink("S'inscrire", "Inscription", "Client", null, new { @class = "btn btn-default" })</p>
+                </div>
             }
             <!-- Si l'utilisateur est authentifié -->
             @if (Request.IsAuthenticated)

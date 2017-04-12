@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Front_Office.Controllers
 {
+    [Authorize]
     public class PanierController : Controller
     {
         PanierCommande panier;
