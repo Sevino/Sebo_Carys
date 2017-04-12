@@ -23,5 +23,7 @@ namespace Front_Office.Models
         void InscriptionClient(string nom, string prenom, string adresse, string codePostal, string ville, string email, string motDePasse, string numTel);
         bool VerifierExistenceClient(string email);
         bool VerifierLoginMotDePasse(string id, string password);
+        Client RecupererInformationClient(string identifiant);
+        void UpdateClient(Client client);
     }
 }

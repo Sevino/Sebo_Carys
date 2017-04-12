@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <WcfConfigValidationEnabled>True</WcfConfigValidationEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -90,6 +91,7 @@
     <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -169,6 +171,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Banque.svc.cs">
+      <DependentUpon>Banque.svc</DependentUpon>
+    </Compile>
     <Compile Include="Controllers\AuthenticationController.cs" />
     <Compile Include="Controllers\CatalogueController.cs" />
     <Compile Include="Controllers\ClientController.cs" />
@@ -204,6 +209,7 @@
     <Compile Include="ViewModels\LoginViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Banque.svc" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -262,9 +268,9 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Catalogue\Index.cshtml" />
     <Content Include="Views\Catalogue\Article.cshtml" />
-    <Content Include="Views\Client\Connexion.cshtml" />
     <Content Include="Views\Client\Inscription.cshtml" />
     <Content Include="Views\Authentication\Login.cshtml" />
+    <Content Include="Views\Client\Gestion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
