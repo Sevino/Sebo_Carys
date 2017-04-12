@@ -41,9 +41,14 @@ namespace Front_Office.Models
             return new BddContext().Categories.ToList();
         }
 
-        public static List<LigneCommande> ObtenirLignesDeCommande(int id)
+        public static Categorie ObtenirCategorie(int id)
         {
-            return new BddContext().LigneCommandes.Where(ligne => ligne.NumeroCommande == id).ToList();
+            return new BddContext().Categories.FirstOrDefault(c => c.IdCategorie == id);
+        }
+
+        public static Genre ObtenirGenre(int id)
+        {
+            return new BddContext().Genres.FirstOrDefault(c => c.IdGenre == id);
         }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

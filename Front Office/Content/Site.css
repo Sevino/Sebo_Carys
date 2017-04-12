@@ -29,6 +29,7 @@ textarea {
 
 .img-responsive {
     max-width: 200px;
+    margin-bottom: 5px;
 }
 
 .jumbotron {
@@ -61,4 +62,8 @@ input[type="checkbox"].input-validation-error {
 
 .double-input input {
     max-width: 200px;
+}
+
+.ajouter {
+    width: 200px;
 }

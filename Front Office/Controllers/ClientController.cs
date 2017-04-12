@@ -61,7 +61,7 @@ namespace Front_Office.Controllers
         {
             var identifiant = "";
             var claimIdentity = User.Identity as ClaimsIdentity;
-            identifiant =claimIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+            identifiant = claimIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
             using (var context = new Front())
             {
                 ClientViewModel modelclient = new ClientViewModel
