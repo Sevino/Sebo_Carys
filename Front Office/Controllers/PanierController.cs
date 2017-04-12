@@ -1,4 +1,5 @@
 ﻿using Front_Office.Models;
+using Front_Office.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,15 +10,36 @@ namespace Front_Office.Controllers
 {
     public class PanierController : Controller
     {
-        public ActionResult Index(int id)
+        PanierCommande panier = new Front().ObtenirPanier(new BddContext().Clients.First(c => c.NumeroClient == 1));
+
+        public ActionResult Index()
         {
             using (var context = new Front())
             {
-                PanierCommande commande = new PanierCommande();
-                commande.LigneCommandes.Add(new LigneCommande { Reference = id, NumeroCommande = commande.NumeroCommande, QuantiteCommande = 1, PrixUnitaire = context.ObtenirArticle(id).Prix });
-                HttpContext.Session["commande"] = commande;
+                List<LigneCommande> lignes = context.ObtenirListeArticles(panier);
+
+                return View(lignes);
+            }
+        }
+
+        public ActionResult Ajouter(int id)
+        {
+            using (var context = new Front())
+            {
+                context.AjouterArticle(panier, context.ObtenirArticle(id));
             };
-            return View();
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult Supprimer(int id)
+        {
+            using (var context = new Front())
+            {
+                context.SupprimerArticle(panier, context.ObtenirArticle(id));
+            };
+
+            return RedirectToAction("Index");
         }
     }
 }

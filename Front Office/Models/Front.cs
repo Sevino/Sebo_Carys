@@ -116,13 +116,50 @@ namespace Front_Office.Models
 
         public void Dispose()
         {
-            bdd.Dispose();
+            //bdd.Dispose();
         }
 
-        public void AjouterArticle(PanierCommande commande, Article article)
+        public void AjouterArticle(PanierCommande panier, Article article)
         {
-            bdd.LigneCommandes.Add(new LigneCommande { Reference = article.Reference, NumeroCommande = commande.NumeroCommande, QuantiteCommande = 1, PrixUnitaire = article.PrixAchat.Value * (1 + article.Genre.Categorie.Tva) });
+            LigneCommande ligne = bdd.LigneCommandes.SingleOrDefault(l => l.NumeroCommande == panier.NumeroCommande && l.Reference == article.Reference);
+            if (ligne == null)
+            {
+                bdd.LigneCommandes.Add(new LigneCommande { Reference = article.Reference, NumeroCommande = panier.NumeroCommande, QuantiteCommande = 1, PrixUnitaire = article.PrixAchat.Value * (1 + (article.Genre.Categorie.Tva / 100)) });
+            }
+            else
+            {
+                ligne.QuantiteCommande++;
+            }
             bdd.SaveChanges();
+        }
+
+        public void SupprimerArticle(PanierCommande panier, Article article)
+        {
+            LigneCommande ligne = bdd.LigneCommandes.SingleOrDefault(l => l.NumeroCommande == panier.NumeroCommande && l.Reference == article.Reference);
+            bdd.LigneCommandes.Remove(ligne);
+            bdd.SaveChanges();
+        }
+
+        public PanierCommande ObtenirPanier(Client client)
+        {
+            PanierCommande panier = bdd.PanierCommandes.SingleOrDefault(c => c.NumeroClient == client.NumeroClient && c.EtatCommande.LibelleEtat == "Panier");
+            if (panier == null)
+            {
+                panier = bdd.PanierCommandes.Add(new PanierCommande { DateCommande = DateTime.Now, NumeroClient = client.NumeroClient, IdEtat = bdd.EtatCommandes.First(e => e.LibelleEtat == "Panier").IdEtat });
+                bdd.SaveChanges();
+            }
+
+            return panier;
+        }
+
+        public List<LigneCommande> ObtenirListeArticles(PanierCommande panier)
+        {
+            return bdd.LigneCommandes.Where(l => l.NumeroCommande == panier.NumeroCommande).ToList();
+        }
+
+        public int ObtenirNombreArticles(PanierCommande panier)
+        {
+            return bdd.LigneCommandes.Where(l => l.NumeroCommande == panier.NumeroCommande).Count();
         }
     }
 }
