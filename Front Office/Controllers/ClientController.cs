@@ -57,7 +57,7 @@ namespace Front_Office.Controllers
             }
         }
 
-        
+
         public ActionResult Gestion()
         {
             var identifiant = "";
@@ -68,10 +68,10 @@ namespace Front_Office.Controllers
                 ClientViewModel modelclient = new ClientViewModel
                 {
                     Client = context.RecupererInformationClient(identifiant),
-                    Connecte = true,                    
+                    Connecte = true,
                 };
                 return View(modelclient);
-            }            
+            }
         }
 
         [HttpPost]
@@ -83,7 +83,7 @@ namespace Front_Office.Controllers
                 if (!ModelState.IsValid)// || context.VerifierExistenceClient(client.EmailClient))
                 {
                     ClientViewModel modelerror = new ClientViewModel
-                    {                        
+                    {
                     };
                     //if (context.VerifierExistenceClient(client.EmailClient))
                     //{
@@ -94,10 +94,26 @@ namespace Front_Office.Controllers
                 //Inscription du client dans la base
                 context.UpdateClient(client);
                 ClientViewModel model = new ClientViewModel
-                {                   
+                {
                 };
                 // On renvoie le client sur la page d'accueil
                 return RedirectToAction("Index", "Home");
+            }
+        }
+
+        public ActionResult Historique()
+        {
+            var identifiant = "";
+            var claimIdentity = User.Identity as ClaimsIdentity;
+            identifiant = claimIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+            using (var context = new Front())
+            {
+                ClientViewModel modelclient = new ClientViewModel
+                {
+                    Client = context.RecupererInformationClient(identifiant),
+                    Connecte = true,
+                };
+                return View(modelclient);
             }
         }
     }

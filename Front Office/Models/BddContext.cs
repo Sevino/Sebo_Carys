@@ -56,6 +56,11 @@ namespace Front_Office.Models
             return new BddContext().Clients.FirstOrDefault(c => c.NumeroClient == id);
         }
 
+        public static List<PanierCommande> ObtenirListeCommandes(Client client)
+        {
+            return new BddContext().PanierCommandes.Where(c => c.NumeroClient == client.NumeroClient).ToList();
+        }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Acteur>()

@@ -30,7 +30,14 @@
                 {
                     <tr>
                         <td>
-                            <img src="@article.PhotoArticle" alt="@article.LibelleArticle" class="img-responsive img-mini" />
+                            @if (String.IsNullOrEmpty(@article.PhotoArticle))
+                            {
+                                <img src="http://placehold.it/200" alt="@article.LibelleArticle" class="img-responsive img-mini" />
+                            }
+                            else
+                            {
+                                <img src="@article.PhotoArticle" alt="@article.LibelleArticle" class="img-responsive img-mini" />
+                            }
                             @Html.ActionLink(article.LibelleArticle, "Article", "Catalogue", new { id = @article.Reference }, null)
                         </td>
                         <td>@Front_Office.Models.BddContext.ObtenirGenre(article.IdGenre).LibelleGenre</td>

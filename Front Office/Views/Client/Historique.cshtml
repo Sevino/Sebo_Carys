@@ -1,0 +1,16 @@
+﻿@model Front_Office.ViewModels.ClientViewModel
+
+@{
+    ViewBag.Title = "CARYS - Historique des commandes";
+}
+
+<div class="jumbotron">
+    <h2>Historique des commandes</h2>
+
+    <ul>
+        @foreach (Front_Office.Models.PanierCommande commande in Front_Office.Models.BddContext.ObtenirListeCommandes(Model.Client))
+        {
+            <li>Commande du @commande.DateCommande (@commande.EtatCommande.LibelleEtat)</li>
+        }
+    </ul>
+</div>
