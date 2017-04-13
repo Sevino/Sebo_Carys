@@ -169,12 +169,12 @@ namespace Front_Office.Models
             cli.NomClient = c.NomClient;
             cli.PrenomClient = c.PrenomClient;
             cli.TelephoneClient = c.TelephoneClient;
-            cli.VilleClient = c.VilleClient;                       
+            cli.VilleClient = c.VilleClient;
             bdd.SaveChanges();
         }
 
 
-       
+
 
         public void Dispose()
         {
@@ -186,7 +186,7 @@ namespace Front_Office.Models
             LigneCommande ligne = bdd.LigneCommandes.SingleOrDefault(l => l.NumeroCommande == panier.NumeroCommande && l.Reference == article.Reference);
             if (ligne == null)
             {
-                bdd.LigneCommandes.Add(new LigneCommande { Reference = article.Reference, NumeroCommande = panier.NumeroCommande, QuantiteCommande = 1, PrixUnitaire = article.PrixAchat.Value * (1 + (article.Genre.Categorie.Tva / 100)) });
+                bdd.LigneCommandes.Add(new LigneCommande { Reference = article.Reference, NumeroCommande = panier.NumeroCommande, QuantiteCommande = 1, PrixUnitaire = article.PrixAchat.Value });
             }
             else
             {
@@ -222,6 +222,14 @@ namespace Front_Office.Models
         public int ObtenirNombreArticles(PanierCommande panier)
         {
             return bdd.LigneCommandes.Where(l => l.NumeroCommande == panier.NumeroCommande).Count();
+        }
+
+        public void ValiderPanier(PanierCommande commande)
+        {
+            PanierCommande panier = bdd.PanierCommandes.SingleOrDefault(c => c.NumeroCommande == commande.NumeroCommande);
+            panier.IdEtat = bdd.EtatCommandes.First(e => e.LibelleEtat == "En attente de paiement").IdEtat;
+            panier.DateCommande = DateTime.Now;
+            bdd.SaveChanges();
         }
     }
 }

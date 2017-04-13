@@ -31,14 +31,14 @@
                 {
                     <tr>
                         <td>@ligne.Article.LibelleArticle</td>
-                        <td>@Html.TextBox("quantite", ligne.QuantiteCommande, new { @class = "form-control" })</td>
-                        <td>@String.Format("{0:0.00}", @ligne.PrixUnitaire) €</td>
+                        <td>@ligne.QuantiteCommande</td>
+                        <td>@String.Format("{0:0.00} €", @ligne.PrixUnitaire)</td>
                         <td>@Html.ActionLink("Supprimer", "Supprimer", "Panier", new { id = ligne.Article.Reference }, new { @class = "btn btn-primary pull-right" })</td>
                     </tr>
                 }
             </tbody>
         </table>
-        <p>Total : @total €</p>
-        @Html.ActionLink("Commander", "Commander", "Panier", null, new { @class = "btn btn-primary pull-right" })
+        <p>Total : @String.Format("{0:0.00} €", @total)</p>
+        @Html.ActionLink("Commander", "Facture", "Panier", null, new { @class = "btn btn-primary pull-right" })
     }
 </div>

@@ -29,8 +29,11 @@
                 @foreach (Front_Office.Models.Article article in Model.Articles)
                 {
                     <tr>
-                        <td>@Html.ActionLink(article.LibelleArticle, "Article", "Catalogue", new { id = @article.Reference }, null)</td>
-                        <td>@article.IdGenre</td>
+                        <td>
+                            <img src="@article.PhotoArticle" alt="@article.LibelleArticle" class="img-responsive img-mini" />
+                            @Html.ActionLink(article.LibelleArticle, "Article", "Catalogue", new { id = @article.Reference }, null)
+                        </td>
+                        <td>@Front_Office.Models.BddContext.ObtenirGenre(article.IdGenre).LibelleGenre</td>
                         <td>@String.Format("{0:0.00}", @article.Prix) €</td>
                         <td>@Html.ActionLink("Ajouter", "Ajouter", "Panier", new { id = article.Reference }, new { @class = "btn btn-primary pull-right" })</td>
                     </tr>
