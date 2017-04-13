@@ -8,7 +8,7 @@ using System.Web.Mvc;
 
 namespace Front_Office.Controllers
 {
-    [Authorize]
+    [Authorize]   // Autorisé si on est identifié
     public class PanierController : Controller
     {
         PanierCommande panier = new Front().ObtenirPanier(new BddContext().Clients.First(c => c.NumeroClient == 1));

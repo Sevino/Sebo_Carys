@@ -70,6 +70,7 @@ namespace Front_Office.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Authorize] // Autorisé si on est identifié
         public ActionResult Logout()
         {
             var ctx = Request.GetOwinContext();

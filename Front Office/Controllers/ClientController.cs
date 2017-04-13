@@ -10,6 +10,7 @@ using System.Web.Mvc;
 
 namespace Front_Office.Controllers
 {
+    [AllowAnonymous]      // Autorisé si on n'est pas identifié
     public class ClientController : Controller
     {
 
