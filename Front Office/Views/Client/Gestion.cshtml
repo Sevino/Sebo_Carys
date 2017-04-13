@@ -21,7 +21,7 @@
             <div class="form-group">
                 @Html.LabelFor(model => model.Client.NomClient, new { @class = "col-lg-2 control-label" })
                 <div class="col-lg-8">
-                    @Html.TextBoxFor(model => model.Client.NomClient, new {@class = "form-control", placeholder = "Nom", tabindex = 1 })
+                    @Html.TextBoxFor(model => model.Client.NomClient, new { @class = "form-control", placeholder = "Nom", tabindex = 1 })
                     @Html.ValidationMessageFor(model => Model.Client.NomClient)
                 </div>
                 <div class="col-lg-2"></div>
@@ -54,23 +54,23 @@
                 <div class="col-lg-2"></div>
             </div>
                  <!-- Ville Client -->
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Client.VilleClient, new { @class = "col-lg-2 control-label" })
-                    <div class="col-lg-8">
-                        @Html.TextBoxFor(model => model.Client.VilleClient, new { @class = "form-control", placeholder = "Ville", tabindex = 5 })
-                        @Html.ValidationMessageFor(model => Model.Client.VilleClient)
-                    </div>
-                    <div class="col-lg-2"></div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Client.VilleClient, new { @class = "col-lg-2 control-label" })
+                <div class="col-lg-8">
+                    @Html.TextBoxFor(model => model.Client.VilleClient, new { @class = "form-control", placeholder = "Ville", tabindex = 5 })
+                    @Html.ValidationMessageFor(model => Model.Client.VilleClient)
                 </div>
+                <div class="col-lg-2"></div>
+            </div>
                  <!-- Téléphone -->
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Client.TelephoneClient, new { @class = "col-lg-2 control-label" })
-                    <div class="col-lg-8">
-                        @Html.TextBoxFor(model => model.Client.TelephoneClient, new { @class = "form-control", placeholder = "Télephone", tabindex = 6 })
-                        @Html.ValidationMessageFor(model => Model.Client.TelephoneClient)
-                    </div>
-                    <div class="col-lg-2"></div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Client.TelephoneClient, new { @class = "col-lg-2 control-label" })
+                <div class="col-lg-8">
+                    @Html.TextBoxFor(model => model.Client.TelephoneClient, new { @class = "form-control", placeholder = "Télephone", tabindex = 6 })
+                    @Html.ValidationMessageFor(model => Model.Client.TelephoneClient)
                 </div>
+                <div class="col-lg-2"></div>
+            </div>
                  <!-- Email -->
                 <div class="form-group">
                     @Html.LabelFor(model => model.Client.EmailClient, new { @class = "col-lg-2 control-label" })

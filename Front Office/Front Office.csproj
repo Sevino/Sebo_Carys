@@ -328,6 +328,7 @@
     <Content Include="Views\Client\Gestion.cshtml" />
     <Content Include="Views\Panier\Facture.cshtml" />
     <Content Include="Views\Client\Menu.cshtml" />
+    <Content Include="Views\Client\Historique.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -7,12 +7,23 @@
 <div class="jumbotron">
     <h1>@Model.ArticleChoisi.LibelleArticle</h1>
     <div class="pull-right">
-        <img src="@Model.ArticleChoisi.PhotoArticle" alt="@Model.ArticleChoisi.LibelleArticle" class="img-responsive" />
+        @if (String.IsNullOrEmpty(@Model.ArticleChoisi.PhotoArticle))
+        {
+            <img src="http://placehold.it/200" alt="@Model.ArticleChoisi.LibelleArticle" class="img-responsive" />
+        }
+        else
+        {
+            <img src="@Model.ArticleChoisi.PhotoArticle" alt="@Model.ArticleChoisi.LibelleArticle" class="img-responsive" />
+        }
         @Html.ActionLink("Ajouter", "Ajouter", "Panier", new { id = Model.ArticleChoisi.Reference }, new { @class = "btn btn-primary pull-right ajouter" })
     </div>
     <ul>
-        <li>Prix : @String.Format("{0:0.00}", Model.ArticleChoisi.Prix) €</li>
+        <li>Prix : @String.Format("{0:0.00} €", Model.ArticleChoisi.Prix)</li>
         <li>Genre : @Front_Office.Models.BddContext.ObtenirGenre(Model.ArticleChoisi.IdGenre).LibelleGenre</li>
+        @foreach (Front_Office.Models.Acteur acteur in Model.ArticleChoisi.Acteurs)
+        {
+            <li>@acteur.RoleActeur.LibelleRoleActeur : @acteur.NomActeur</li>
+        }
         <li>Description : @Model.ArticleChoisi.DescriptionArticle</li>
     </ul>
 </div>

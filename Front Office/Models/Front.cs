@@ -177,7 +177,7 @@ namespace Front_Office.Models
             LigneCommande ligne = bdd.LigneCommandes.SingleOrDefault(l => l.NumeroCommande == panier.NumeroCommande && l.Reference == article.Reference);
             if (ligne == null)
             {
-                bdd.LigneCommandes.Add(new LigneCommande { Reference = article.Reference, NumeroCommande = panier.NumeroCommande, QuantiteCommande = 1, PrixUnitaire = article.PrixAchat.Value });
+                bdd.LigneCommandes.Add(new LigneCommande { Reference = article.Reference, NumeroCommande = panier.NumeroCommande, QuantiteCommande = 1, PrixUnitaire = article.Prix });
             }
             else
             {
