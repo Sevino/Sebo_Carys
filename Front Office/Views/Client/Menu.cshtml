@@ -1,0 +1,17 @@
+﻿
+@{
+    ViewBag.Title = "CARYS - Menu gestion du compte";
+}
+
+<div class="jumbotron">
+    <h1>Gestion du compte</h1>
+    <div class="col-md-4">               
+        <p>@Html.ActionLink("Mes infos personelles", "Gestion", "Client", null, new { @class = "btn btn-primary" })</p>
+    </div>
+    <div class="col-md-4">
+    <p>@Html.ActionLink("Modifier le mot de passe", "Logout", "Authentication", null, new { @class = "btn btn-primary" })</p>
+</div>
+    <div class="col-md-4">
+        <p>@Html.ActionLink("Historique des commandes", "Logout", "Authentication", null, new { @class = "btn btn-primary" })</p>
+    </div>
+   </div>

@@ -47,23 +47,23 @@
                 <div class="col-lg-2"></div>
             </div>
                  <!-- Code Postal -->
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Client.CodePostalClient, new { @class = "col-lg-2 control-label" })
-                    <div class="col-lg-8">
-                        @Html.TextBoxFor(model => model.Client.CodePostalClient, new { @class = "form-control", placeholder = "Code Postal", tabindex = 4 })
-                        @Html.ValidationMessageFor(model => Model.Client.CodePostalClient)
-                    </div>
-                    <div class="col-lg-2"></div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Client.CodePostalClient, new { @class = "col-lg-2 control-label" })
+                <div class="col-lg-8">
+                    @Html.TextBoxFor(model => model.Client.CodePostalClient, new { @class = "form-control", placeholder = "Code Postal", tabindex = 4 })
+                    @Html.ValidationMessageFor(model => Model.Client.CodePostalClient)
                 </div>
+                <div class="col-lg-2"></div>
+            </div>
                  <!-- Ville Client -->
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Client.VilleClient, new { @class = "col-lg-2 control-label" })
-                    <div class="col-lg-8">
-                        @Html.TextBoxFor(model => model.Client.VilleClient, new { @class = "form-control", placeholder = "Ville", tabindex = 5 })
-                        @Html.ValidationMessageFor(model => Model.Client.VilleClient)
-                    </div>
-                    <div class="col-lg-2"></div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Client.VilleClient, new { @class = "col-lg-2 control-label" })
+                <div class="col-lg-8">
+                    @Html.TextBoxFor(model => model.Client.VilleClient, new { @class = "form-control", placeholder = "Ville", tabindex = 5 })
+                    @Html.ValidationMessageFor(model => Model.Client.VilleClient)
                 </div>
+                <div class="col-lg-2"></div>
+            </div>
                  <!-- Téléphone -->
                 <div class="form-group">
                     @Html.LabelFor(model => model.Client.TelephoneClient, new { @class = "col-lg-2 control-label" })
@@ -91,6 +91,15 @@
                     </div>
                     <div class="col-lg-2"></div>
                 </div>
+                <!-- Confirmation du mot de passe -->
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Client.ConfirmationMotDePasse, new { @class = "col-lg-2 control-label" })
+                    <div class="col-lg-8">
+                        @Html.PasswordFor(model => model.Client.ConfirmationMotDePasse, new { @class = "form-control", placeholder = "Confirmation du mot de passe", tabindex = 8 })
+                        @Html.ValidationMessageFor(model => Model.Client.ConfirmationMotDePasse)
+                    </div>
+                    <div class="col-lg-2"></div>
+                </div>
                 <!-- Captcha -->
                 <div class="form-group">
                     <div class="col-lg-4"></div>
@@ -104,9 +113,9 @@
                 <div class="row">
                     <div class="col-lg-2"></div>
                     <div class="col-lg-4">
-                        <input type="button" value="Retour" onclick="location.href='@Url.Action("Index","Home")';" class="btn btn-primary btn-block"/>
+                        <input type="button" value="Retour" onclick="location.href='@Url.Action("Index","Home")';" class="btn btn-primary btn-block" />
                     </div>
-                    <div class="col-lg-4">                        
+                    <div class="col-lg-4">
                         <input type="submit" value="Inscrire" class="btn btn-primary btn-block" />
                     </div>
                     <div class="col-lg-2"></div>

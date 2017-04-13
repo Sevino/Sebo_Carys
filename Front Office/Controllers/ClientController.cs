@@ -47,7 +47,7 @@ namespace Front_Office.Controllers
                     return View(modelerror);
                 }
                 //Inscription du client dans la base
-                context.InscriptionClient(client.NomClient, client.PrenomClient, client.AdresseClient, client.CodePostalClient, client.VilleClient, client.EmailClient, client.MotDePasseClient, client.TelephoneClient);
+                context.InscriptionClient(client);
                 ClientViewModel model = new ClientViewModel
                 {
                     Connecte = false
@@ -78,19 +78,18 @@ namespace Front_Office.Controllers
         public ActionResult Gestion(Client client)
         {
             using (var context = new Front())
-            {
+            {              
                 // Si les données ne sont pas bonne ou que le client existe deja on renvoi la page avec les erreurs
-                if (!ModelState.IsValid)// || context.VerifierExistenceClient(client.EmailClient))
+              /*  if (!ModelState.IsValid)// || context.VerifierExistenceClient(client.EmailClient))
                 {
                     ClientViewModel modelerror = new ClientViewModel
                     {                        
                     };
-                    //if (context.VerifierExistenceClient(client.EmailClient))
                     //{
                     //    modelerror.Message = "Erreur : Cette adresse mail est déja utilisée";
                     //}
                     return View(modelerror);
-                }
+                }*/
                 //Inscription du client dans la base
                 context.UpdateClient(client);
                 ClientViewModel model = new ClientViewModel
@@ -99,6 +98,11 @@ namespace Front_Office.Controllers
                 // On renvoie le client sur la page d'accueil
                 return RedirectToAction("Index", "Home");
             }
+        }
+
+        public ActionResult Menu()
+        {
+            return View();
         }
     }
 }

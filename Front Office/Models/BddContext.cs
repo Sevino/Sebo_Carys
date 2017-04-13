@@ -58,6 +58,8 @@ namespace Front_Office.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<Client>().Ignore(c => c.ConfirmationMotDePasse);
+
             modelBuilder.Entity<Acteur>()
                 .Property(e => e.NomActeur)
                 .IsUnicode(false);

@@ -8,7 +8,7 @@ namespace Front_Office.Models
 
     [Table("Client")]
     public partial class Client
-    {
+    {     
         [Key]
         public int NumeroClient { get; set; }
 
@@ -53,5 +53,13 @@ namespace Front_Office.Models
         [StringLength(250)]
         [Display(Name = "Mot de passe")]
         public string MotDePasseClient { get; set; }
+
+        [NotMapped]    
+        [Required(ErrorMessage ="La confirmation du mot de passe doit être saisie")]
+        [Compare("MotDePasseClient", ErrorMessage ="Le mot de passe et la confirmation doivent être identique")]
+        [Display(Name = "Confirmation du mot de passe")]
+        public string ConfirmationMotDePasse { get; set; }
+
+      
     }
 }

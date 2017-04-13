@@ -20,7 +20,7 @@ namespace Front_Office.Models
         List<Article> ObtenirArticlesParCategorie(Categorie categorie);
         Article ObtenirArticle(int id);
         Client ConnecterClient(string email, string motDePasse);
-        void InscriptionClient(string nom, string prenom, string adresse, string codePostal, string ville, string email, string motDePasse, string numTel);
+        void InscriptionClient(Client client);
         bool VerifierExistenceClient(string email);
         bool VerifierLoginMotDePasse(string id, string password);
         Client RecupererInformationClient(string identifiant);

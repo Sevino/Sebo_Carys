@@ -98,19 +98,9 @@ namespace Front_Office.Models
         /// <param name="email"></param>
         /// <param name="motDePasse"></param>
         /// <param name="numTel"></param>
-        public void InscriptionClient(string nom, string prenom, string adresse, string codePostal, string ville, string email, string motDePasse, string numTel)
+        public void InscriptionClient(Client client)
         {
-            bdd.Clients.Add(new Client
-            {
-                NomClient = nom,
-                PrenomClient = prenom,
-                AdresseClient = adresse,
-                CodePostalClient = codePostal,
-                VilleClient = ville,
-                EmailClient = email,
-                MotDePasseClient = motDePasse,
-                TelephoneClient = numTel
-            });
+            bdd.Clients.Add(client);            
             bdd.SaveChanges();
         }
         /// <summary>
@@ -160,16 +150,17 @@ namespace Front_Office.Models
         /// Actualise les données d'un client passé en paramètre
         /// </summary>
         /// <param name="c"></param>
-        public void UpdateClient(Client c)
+        public void UpdateClient(Client client)
         {
-            var cli = bdd.Clients.Where(client => client.EmailClient == c.EmailClient).FirstOrDefault();
-            cli.AdresseClient = c.AdresseClient;
-            cli.CodePostalClient = c.CodePostalClient;
-            cli.MotDePasseClient = c.MotDePasseClient;
-            cli.NomClient = c.NomClient;
-            cli.PrenomClient = c.PrenomClient;
-            cli.TelephoneClient = c.TelephoneClient;
-            cli.VilleClient = c.VilleClient;
+            Client cli = bdd.Clients.Where(c => c.EmailClient == client.EmailClient).FirstOrDefault();
+            cli.AdresseClient = client.AdresseClient;
+            cli.CodePostalClient = client.CodePostalClient;           
+            cli.NomClient = client.NomClient;
+            cli.PrenomClient = client.PrenomClient;
+            cli.TelephoneClient = client.TelephoneClient;
+            cli.VilleClient = client.VilleClient;
+            // On assigne le mot de passe a la confirmation afin de supprimer les erreur
+            cli.ConfirmationMotDePasse = cli.MotDePasseClient;
             bdd.SaveChanges();
         }
 
@@ -231,5 +222,7 @@ namespace Front_Office.Models
             panier.DateCommande = DateTime.Now;
             bdd.SaveChanges();
         }
+
+       
     }
 }
